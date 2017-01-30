@@ -3,20 +3,14 @@ Write a function named 'pollutantmean' that calculates the mean of a pollutant (
 
 Answer:
 pollutantmean <- function(directory, pollutant, id){
-  setwd(directory)
-  #id <- toString(id)
-  if(nchar(id)==1){
-    filename <- paste("00",id,".csv",sep="")
-  }
-  else if(nchar(id)==2){
-    filename <- paste("0",id,".csv",sep="")
-  }
-  else
-  {
-    filename <- paste(id,".csv",sep="")
-  }
+  #set the working directory
+  setwd(paste(getwd(),"/",directory, sep=""))
+  if(nchar(id)==1){ filename <- paste("00",id,".csv",sep="")}
+  else if(nchar(id)==2){filename <- paste("0",id,".csv",sep="") }
+  else{ filename <- paste(id,".csv",sep="") }
   monitordata <- read.csv(filename)
   mean(monitordata[,pollutant], na.rm = TRUE)
 }
 
-#pollutantmean("D:/R/specdata","nitrate",002)
+
+#pollutantmean("specdata","nitrate",002)
